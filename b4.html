@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Ký</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7f9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section h2 {
+            font-size: 20px;
+            color: #3498db;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px 15px;
+        }
+
+        .form-group {
+            flex: 1 0 calc(50% - 20px);
+            margin: 0 10px 15px;
+            min-width: 250px;
+        }
+
+        .form-group.full-width {
+            flex: 1 0 calc(100% - 20px);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34495e;
+            font-size: 14px;
+        }
+
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .checkbox-group, .radio-group {
+            margin: 10px 0;
+        }
+
+        .checkbox-group label, .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .checkbox-group input, .radio-group input {
+            margin-right: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .input-hint {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .form-group {
+                flex: 1 0 calc(100% - 20px);
+            }
+
+            .container {
+                padding: 20px;
+            }
+        }
+
+        /* Error State */
+        .error {
+            border-color: #e74c3c;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Biểu Mẫu Đăng Ký</h1>
+            <p>Vui lòng điền đầy đủ thông tin bên dưới để hoàn tất đăng ký</p>
+        </div>
+
+        <form id="registrationForm" action="#" method="post">
+            <!-- Thông tin cá nhân -->
+            <div class="form-section">
+                <h2>Thông Tin Cá Nhân</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="lastName" class="required">Họ và tên đệm</label>
+                        <input type="text" id="lastName" name="lastName" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName" class="required">Tên</label>
+                        <input type="text" id="firstName" name="firstName" class="input-field" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dob" class="required">Ngày sinh</label>
+                        <input type="date" id="dob" name="dob" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Giới tính</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="gender" value="male" checked> Nam
+                            </label>
+                            <label>
+                                <input type="radio" name="gender" value="female"> Nữ
+                            </label>
+                            <label>
+                                <input type="radio" name="gender" value="other"> Khác
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idNumber" class="required">CMND/CCCD</label>
+                        <input type="text" id="idNumber" name="idNumber" class="input-field" required>
+                        <div class="input-hint">Nhập số CMND hoặc căn cước công dân của bạn</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nationality">Quốc tịch</label>
+                        <select id="nationality" name="nationality" class="input-field">
+                            <option value="vietnam" selected>Việt Nam</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin liên hệ -->
+            <div class="form-section">
+                <h2>Thông Tin Liên Hệ</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email" class="required">Email</label>
+                        <input type="email" id="email" name="email" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="required">Số điện thoại</label>
+                        <input type="tel" id="phone" name="phone" class="input-field" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="address" class="required">Địa chỉ</label>
+                        <input type="text" id="address" name="address" class="input-field" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="province">Tỉnh/Thành phố</label>
+                        <select id="province" name="province" class="input-field">
+                            <option value="" selected disabled>-- Chọn Tỉnh/Thành phố --</option>
+                            <option value="hanoi">Hà Nội</option>
+                            <option value="hcm">TP. Hồ Chí Minh</option>
+                            <option value="danang">Đà Nẵng</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="district">Quận/Huyện</label>
+                        <select id="district" name="district" class="input-field">
+                            <option value="" selected disabled>-- Chọn Quận/Huyện --</option>
+                            <option value="district1">Quận 1</option>
+                            <option value="district2">Quận 2</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin học vấn -->
+            <div class="form-section">
+                <h2>Thông Tin Học Vấn</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="education">Trình độ học vấn</label>
+                        <select id="education" name="education" class="input-field">
+                            <option value="highschool">THPT</option>
+                            <option value="college">Cao đẳng</option>
+                            <option value="university" selected>Đại học</option>
+                            <option value="master">Thạc sĩ</option>
+                            <option value="phd">Tiến sĩ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="major">Chuyên ngành</label>
+                        <input type="text" id="major" name="major" class="input-field">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label>Kỹ năng</label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="skills" value="htmlcss"> HTML/CSS
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="javascript"> JavaScript
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="php"> PHP
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="python"> Python
+                            </label>
+                            <label>
+                                <input type="checkbox" name="skills" value="java"> Java
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin bổ sung -->
+            <div class="form-section">
+                <h2>Thông Tin Bổ Sung</h2>
+                
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="aboutMe">Giới thiệu bản thân</label>
+                        <textarea id="aboutMe" name="aboutMe" placeholder="Hãy chia sẻ đôi điều về bản thân..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="agree" name="agree" required>
+                                Tôi đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-primary">Đăng Ký</button>
+                <button type="reset" class="btn btn-secondary">Xóa Thông Tin</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Simple form validation
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            let valid = true;
+            
+            // Validate required fields
+            const requiredFields = document.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    
+                    // Remove any existing error message
+                    const existingError = field.parentElement.querySelector('.error-message');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+                    
+                    // Add error message
+                    const errorMessage = document.createElement('div');
+                    errorMessage.classList.add('error-message');
+                    errorMessage.textContent = 'Trường này là bắt buộc';
+                    field.parentElement.appendChild(errorMessage);
+                    
+                    valid = false;
+                } else {
+                    field.classList.remove('error');
+                    const existingError = field.parentElement.querySelector('.error-message');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+                }
+            });
+            
+            // Email validation
+            const emailInput = document.getElementById('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailInput.value && !emailPattern.test(emailInput.value)) {
+                emailInput.classList.add('error');
+                
+                // Remove any existing error message
+                const existingError = emailInput.parentElement.querySelector('.error-message');
+                if (existingError) {
+                    existingError.remove();
+                }
+                
+                // Add error message
+                const errorMessage = document.createElement('div');
+                errorMessage.classList.add('error-message');
+                errorMessage.textContent = 'Email không hợp lệ';
+                emailInput.parentElement.appendChild(errorMessage);
+                
+                valid = false;
+            }
+            
+            // Phone validation
+            const phoneInput = document.getElementById('phone');
+            const phonePattern = /^[0-9]{10,11}$/;
+            if (phoneInput.value && !phonePattern.test(phoneInput.value)) {
+                phoneInput.classList.add('error');
+                
+                // Remove any existing error message
+                const existingError = phoneInput.parentElement.querySelector('.error-message');
+                if (existingError) {
+                    existingError.remove();
+                }
+                
+                // Add error message
+                const errorMessage = document.createElement('div');
+                errorMessage.classList.add('error-message');
+                errorMessage.textContent = 'Số điện thoại không hợp lệ (phải có 10-11 số)';
+                phoneInput.parentElement.appendChild(errorMessage);
+                
+                valid = false;
+            }
+            
+            if (!valid) {
+                e.preventDefault();
+            }
+        });
+
+        // Clear errors when input changes
+        const inputs = document.querySelectorAll('.input-field');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('error');
+                const existingError = this.parentElement.querySelector('.error-message');
+                if (existingError) {
+                    existingError.remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
